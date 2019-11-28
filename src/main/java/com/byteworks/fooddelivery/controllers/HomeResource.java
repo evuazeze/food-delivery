@@ -20,11 +20,6 @@ public class HomeResource {
         }
     }
 
-//    @GetMapping("")
-//    public String home() {
-//        return ("<h1>Welcome</h1>");
-//    }
-
     @GetMapping("/developer")
     public String developer() {
         return ("<h1>Welcome Developer</h1>");

@@ -1,6 +1,5 @@
 package com.byteworks.fooddelivery.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,7 +21,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

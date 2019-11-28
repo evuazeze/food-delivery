@@ -1,6 +1,5 @@
 package com.byteworks.fooddelivery.controller;
 
-import com.byteworks.fooddelivery.models.Role;
 import com.byteworks.fooddelivery.models.User;
 import com.byteworks.fooddelivery.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,9 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;

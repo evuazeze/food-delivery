@@ -1,8 +1,10 @@
 package com.byteworks.fooddelivery.controllers;
 
+import com.byteworks.fooddelivery.exception.UserFoundException;
 import com.byteworks.fooddelivery.models.User;
 import com.byteworks.fooddelivery.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +21,16 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody User user) {
+    public ResponseEntity<?> register(@RequestBody User user) {
 
-        User newUser = userService.registerUser(user);
+        User newUser;
+        try {
+            newUser = userService.registerUser(user);
+        } catch (UserFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body(e.getMessage());
+        }
 
         return ResponseEntity
                 .created(URI.create("/api/v1/auth/register/" + newUser.getId()))
