@@ -1,12 +1,16 @@
 package com.byteworks.fooddelivery.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+// usar because user is already being internally used by postgresql
 @Table(name = "usar")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +27,7 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Set<Role> roles;
 
     public Integer getId() {
@@ -64,4 +69,5 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 }

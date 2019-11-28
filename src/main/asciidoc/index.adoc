@@ -1,0 +1,13 @@
+= Byteworks Food Delivery API
+
+== Endpoints
+
+=== POST Endpoints
+
+.request
+include::{snippets}/register-user/http-request.adoc[]
+
+.response
+include::{snippets}/register-user/http-response.adoc[]
+
+

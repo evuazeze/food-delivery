@@ -25,7 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/api/v1", "/api/v1/vendor", "/api/v1/auth/register").permitAll()
+                .antMatchers("/", "/api/v1/vendor", "/docs/index.html", "/api/v1/auth/register").permitAll()
                 .antMatchers("/api/v1/developer").hasRole("DEV").anyRequest().authenticated()
                 .and().formLogin().permitAll().and().cors().and().csrf().disable();
     }
