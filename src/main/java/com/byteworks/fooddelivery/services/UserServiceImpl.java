@@ -43,4 +43,9 @@ public class UserServiceImpl implements UserService {
         savedUser.setPassword(null);
         return savedUser;
     }
+
+    @Override
+    public User findById(Integer id) {
+        return userRepository.findById(id).get();
+    }
 }

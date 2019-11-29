@@ -4,4 +4,6 @@ import com.byteworks.fooddelivery.models.User;
 
 public interface UserService {
     User registerUser(User user);
+
+    User findById(Integer id);
 }

@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.util.AntPathMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -25,9 +27,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/api/v1/vendor", "/docs/index.html", "/api/v1/auth/register").permitAll()
-                .antMatchers("/api/v1/developer").hasRole("DEV").anyRequest().authenticated()
-                .and().formLogin().permitAll().and().cors().and().csrf().disable();
+                .antMatchers("/", "/vendor", "/docs/index.html", "/api/v1/auth/signup", "/api/v1/orders").permitAll()
+                .antMatchers("/developer", "/api/v1/order").hasRole("DEV").anyRequest().authenticated()
+                .and().csrf().disable().cors().disable()
+                // Login
+                .httpBasic()
+                .and()
+                // Logout
+                .logout().invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/api/v1/auth/logout"))
+                .logoutSuccessUrl("/api/v1").permitAll();
     }
 
     @Bean
