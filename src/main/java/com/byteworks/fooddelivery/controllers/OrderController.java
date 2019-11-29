@@ -5,12 +5,10 @@ import com.byteworks.fooddelivery.models.Order;
 import com.byteworks.fooddelivery.services.MealService;
 import com.byteworks.fooddelivery.services.OrderService;
 import com.byteworks.fooddelivery.services.UserService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -48,4 +46,10 @@ public class OrderController {
                 .created(URI.create("/api/v1/order" + sentOrder.getId()))
                 .body(responseOrder);
     }
+
+//    @GetMapping("/orders")
+//    public Iterable<Order> getOrders() {
+//        Iterable<Order> list = orderService.findAll();
+//        return list;
+//    }
 }

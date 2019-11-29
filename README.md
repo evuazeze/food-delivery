@@ -33,7 +33,7 @@
        
        insert into meal (id, name, price) values (3, 'Vegetable Soup', 800);
        
-       insert into meal (id, name, price) values (1, 'Pepper Soup', 1300);
+       insert into meal (id, name, price) values (4, 'Pepper Soup', 1300);
        ```
 
 ## API Endpoints
@@ -42,7 +42,7 @@
 <tr><th>HTTP VERB</th><th>ENDPOINTS</th><th>DESCRIPTION</th></tr>
 <tr><td>POST</td><td>/api/v1/auth/signup</td><td>Creates user account</td></tr>
 <tr><td>POST</td><td>/api/v1/order</td><td>Order meal from vendor</td></tr>
-<tr><td>GET</td><td>/api/v1/order</td><td>Gets all others</td></tr>
+<tr><td>GET</td><td>/api/v1/orders</td><td>Gets all others</td></tr>
 </table>
 
 
