@@ -51,15 +51,15 @@
 
 ## Request Format
 
-    POST /api/v1/auth/signup
+POST /api/v1/auth/signup
     
     {
-       	"username": "evuazeze",
-       	"password": "1234",
-       	"email": "evuazeze.emmanuel@gmail.com"
+        "username": "evuazeze",
+        "password": "1234",
+        "email": "evuazeze.emmanuel@gmail.com"
     }
        
-    POST /api/v1/order
+POST /api/v1/order
     
     {
        "userId": 1,
