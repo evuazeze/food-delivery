@@ -12,7 +12,8 @@
 
     Create a `fooddelivery` schema in your Postgres database.
 
-```
+
+   ```
    spring.jpa.database-platform=org.hibernate.dialect.PostgreSQL94Dialect
    spring.jpa.hibernate.ddl-auto=create-drop
    spring.jpa.show-sql=true
@@ -20,21 +21,23 @@
    spring.datasource.url=jdbc:postgresql://localhost:5432/fooddelivery
    spring.datasource.username=<username>
    spring.datasource.password=<password>
-   spring.datasource.driver-class-name=org.postgresql.Driver```
+   spring.datasource.driver-class-name=org.postgresql.Driver
+   ```
    
    You do not need to create the database tables as hibernate does that.
    
    Run the queries below to get some meals to work with.
    
-       ```
-       insert into meal (id, name, price) values (1, 'Jollof Rice', 1500);
        
-       insert into meal (id, name, price) values (2, 'Fried Rice', 1200);
-       
-       insert into meal (id, name, price) values (3, 'Vegetable Soup', 800);
-       
-       insert into meal (id, name, price) values (4, 'Pepper Soup', 1300);
-       ```
+   ```
+   insert into meal (id, name, price) values (1, 'Jollof Rice', 1500);
+   
+   insert into meal (id, name, price) values (2, 'Fried Rice', 1200);
+   
+   insert into meal (id, name, price) values (3, 'Vegetable Soup', 800);
+   
+   insert into meal (id, name, price) values (4, 'Pepper Soup', 1300);
+   ```
 
 ## API Endpoints
 
@@ -50,19 +53,19 @@
 
     POST /api/v1/auth/signup
     
-    ```{
+    {
        	"username": "evuazeze",
        	"password": "1234",
        	"email": "evuazeze.emmanuel@gmail.com"
-       }```
+    }
        
     POST /api/v1/order
     
-    ```{
-           "userId": 1,
-           "mealId": 1,
-           "officeDelivery": false,
-           "cardPayment": false
-       }```
+    {
+       "userId": 1,
+       "mealId": 1,
+       "officeDelivery": false,
+       "cardPayment": false
+    }
        
     Note: Authorization Header type should `Basic Auth` with username and password filled when making an order.
