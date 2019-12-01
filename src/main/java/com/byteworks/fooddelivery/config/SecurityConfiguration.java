@@ -27,9 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/vendor", "/docs/index.html", "/api/v1/auth/signup", "/api/v1/orders").permitAll()
+                .antMatchers("/", "/vendor", "/docs/index.html", "/api/v1/auth/signup", "/api/v1/auth/login", "/api/v1/orders").permitAll()
                 .antMatchers("/developer", "/api/v1/order").hasRole("DEV").anyRequest().authenticated()
-                .and().csrf().disable().cors().disable()
+                .and().csrf().disable()
                 // Login
                 .httpBasic()
                 .and()
