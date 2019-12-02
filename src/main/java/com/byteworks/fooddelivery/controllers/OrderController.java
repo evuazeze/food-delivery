@@ -2,18 +2,18 @@ package com.byteworks.fooddelivery.controllers;
 
 import com.byteworks.fooddelivery.dto.OrderDto;
 import com.byteworks.fooddelivery.dto.ResponseDto;
-import com.byteworks.fooddelivery.exception.MealDoesNotExistsException;
 import com.byteworks.fooddelivery.models.Order;
 import com.byteworks.fooddelivery.services.MealService;
 import com.byteworks.fooddelivery.services.OrderService;
 import com.byteworks.fooddelivery.services.UserService;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -57,9 +57,20 @@ public class OrderController {
                 .body(responseOrder);
     }
 
-//    @GetMapping("/orders")
-//    public Iterable<Order> getOrders() {
-//        Iterable<Order> list = orderService.findAll();
-//        return list;
-//    }
+    @GetMapping("/order")
+    public Iterable<OrderDto> getOrders() {
+        Iterable<Order> list = orderService.findAll();
+        List<OrderDto> orderDtoList = new ArrayList<>();
+        for (Order order : list) {
+            OrderDto orderDto = new OrderDto();
+            orderDto.setUserId(order.getUser().getId());
+            orderDto.setMealId(order.getMeal().getId());
+            orderDto.setOfficeDelivery(order.getOfficeDelivery());
+            orderDto.setCardPayment(order.getCardPayment());
+            orderDto.setTotalCost(order.getTotalCost());
+
+            orderDtoList.add(orderDto);
+        }
+        return orderDtoList;
+    }
 }

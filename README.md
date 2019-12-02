@@ -46,6 +46,7 @@
 <tr><td>POST</td><td>/api/v1/auth/signup</td><td>Creates user account</td></tr>
 <tr><td>POST</td><td>/api/v1/auth/login/</td><td>Login to server</td></tr>
 <tr><td>POST</td><td>/api/v1/order</td><td>Order meal from vendor</td></tr>
+<tr><td>GET</td><td>/api/v1/order</td><td>Return ordered meals</td></tr>
 </table>
 
 
