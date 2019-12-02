@@ -32,7 +32,6 @@ public class OrderServiceImpl implements OrderService {
 
         if (isOfficeDelivery) {
             double distance = distance(BYTEWORKS_LAT, VENDOR_LAT, BYTEWORKS_LONG, VENDOR_LONG, 1.0, 1.0);
-            System.out.println("distance: " + distance);
             order.setTotalCost(order.getTotalCost() + 10 * distance);
         }
 

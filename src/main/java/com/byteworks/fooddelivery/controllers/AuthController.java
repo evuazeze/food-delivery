@@ -1,19 +1,18 @@
 package com.byteworks.fooddelivery.controllers;
 
-import com.byteworks.fooddelivery.exception.UserFoundException;
+import com.byteworks.fooddelivery.dto.ResponseDto;
+import com.byteworks.fooddelivery.exception.UserAlreadyExistsException;
+import com.byteworks.fooddelivery.exception.UserDoesNotExistsException;
 import com.byteworks.fooddelivery.models.User;
 import com.byteworks.fooddelivery.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -28,7 +27,7 @@ public class AuthController {
         User newUser;
         try {
             newUser = userService.registerUser(user);
-        } catch (UserFoundException e) {
+        } catch (UserAlreadyExistsException e) {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
                     .body(e.getMessage());
@@ -39,15 +38,11 @@ public class AuthController {
                 .body(newUser);
     }
 
-    @RequestMapping("/login")
-    public String loginPage() {
-//
-//        Boolean signedIn = userService.signin(user);
-//
-//        return ResponseEntity
-//                .ok()
-//                .body("signed in");
-        return "Signed In";
+    @PostMapping("/login")
+    public ResponseEntity<?> login() {
+        return ResponseEntity
+                .ok()
+                .body(new ResponseDto(200, "User logged In"));
     }
 
 //    @RequestMapping(value="/logout", method = RequestMethod.POST)

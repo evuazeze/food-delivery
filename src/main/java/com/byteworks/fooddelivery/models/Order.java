@@ -1,9 +1,6 @@
 package com.byteworks.fooddelivery.models;
 
-import com.byteworks.fooddelivery.dto.OrderDto;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "ordar")
